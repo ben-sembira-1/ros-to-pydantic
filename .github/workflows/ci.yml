@@ -6,5 +6,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: pre-commit/action@v3.0.1
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v3
+      - uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: humble
+      - uses: ros-tooling/action-ros-ci@v0.3
+        with:
+          package-name: ros-to-pydantic
+          target-ros2-distro: humble
+      - uses: pre-commit/action@v3.0.1

@@ -48,3 +48,12 @@ repos:
     rev: v2.0.4
     hooks:
     -   id: autopep8
+
+-   repo: local
+    hooks:
+    -   id: pytest-check
+        name: pytest-check
+        entry: "python3 -m pytest"
+        language: system
+        pass_filenames: false
+        always_run: true
