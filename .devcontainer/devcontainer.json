@@ -1,0 +1,50 @@
+{
+    "name": "ROS 2 Development Container",
+    "privileged": true,
+    "remoteUser": "ben",
+    "dockerComposeFile": "./docker-compose.yml",
+    "service": "ros2-dev-env",
+    "workspaceFolder": "/home/ws",
+    "containerEnv": {
+        "DISPLAY": "unix:0",
+        "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+        "ROS_DOMAIN_ID": "42"
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/home/ws,type=bind",
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+    ],
+    "postCreateCommand": "pre-commit install && pre-commit && sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/ws/",
+    "initializeCommand": "mkdir -p cache/humble/build cache/humble/install cache/humble/log",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "ms-python.debugpy",
+                "ms-python.mypy-type-checker",
+                "ms-vscode.hexeditor",
+                "ms-python.flake8",
+                "ms-python.black-formatter",
+                "tamasfe.even-better-toml",
+                "mechatroner.rainbow-csv",
+                "ms-iot.vscode-ros",
+                "eamodio.gitlens",
+                "ZainChen.json",
+                "GitHub.vscode-github-actions"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "moby": true,
+            "azureDnsAutoDetection": true,
+            "installDockerBuildx": true,
+            "installDockerComposeSwitch": true,
+            "version": "20.10",
+            "dockerDashComposeVersion": "v2"
+        }
+    }
+}

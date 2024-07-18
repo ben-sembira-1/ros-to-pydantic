@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ros2-dev-env:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        USERNAME: "ben"
+    volumes:
+      - ~/.gitconfig:/home/ben/.gitconfig
+      # - ..:/workspace:cached
+    entrypoint: /ros_entrypoint.sh
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: /bin/sh -c "while sleep 1000; do :; done"
