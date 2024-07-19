@@ -1,10 +1,6 @@
 version: '3'
 services:
-  publisher:
+  ros_to_pydantic:
     image: ros-sandbox
     build: ./src
-    command: "./entrypoint.sh ros2 run publisher publisher"
-  subscriber:
-    image: ros-sandbox
-    build: ./src
-    command: "./entrypoint.sh ros2 run subscriber subscriber"
+    command: "./entrypoint.sh ros2 run ros_to_pydantic ros_to_pydantic"

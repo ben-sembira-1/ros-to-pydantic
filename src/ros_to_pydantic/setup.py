@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = "publisher"
+package_name = "ros_to_pydantic"
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "publisher = publisher.main:main",
+            "ros_to_pydantic = ros_to_pydantic.main:main",
         ],
     },
 )
